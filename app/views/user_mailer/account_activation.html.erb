@@ -1,9 +1,9 @@
-<h1>susumeru</h1>
+<h1>account_activation</h1>
 
-<p>Hi <%= @user.name %>,</p>
+<p><%= @user.name %> さん</p>
 
 <p>
-Welcome to the Sample App! Click on the link below to activate your account:
+Welcome to the susumeru! Click on the link below to activate your account:
 </p>
 
 <%= link_to "アカウントを有効化する", edit_account_activation_url(@user.activation_token,

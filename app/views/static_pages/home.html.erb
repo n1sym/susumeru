@@ -1,5 +1,22 @@
-
+<% if logged_in? %>
+  <div class="row">
+    <div class="col-md-8">
+      <h3>Micropost Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="micropost_form">
+        <%= link_to "New Post", newpost_path, class: "btn btn-lg btn-primary" %>
+      </section>
+    </aside>
+    
+  </div>
+<% else %>
 <p>
   This is the home page<br><br>
   <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
 </p>
+<% end %>

@@ -1,7 +1,27 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+  <%= f.label :カテゴリー %>
+  <%= f.select :category, {"小説" => "novel", "漫画" => "comic"}%>
+  
+  <%= f.label :ジャンル %>
+  <%= f.select :genre, {"ファンタジー" => "fantasy", "SF" => "sf"} %>
+  
+  <%= f.label :ジャンル2（任意） %>
+  <%= f.select :genre2, {"なし" => "nil", "ファンタジー" => "fantasy", "SF" => "sf"} %>
+  
+  <%= f.label :ジャンル3（任意） %>
+  <%= f.select :genre3, {"なし" => "nil", "ファンタジー" => "fantasy",
+  "SF" => "sf",
+  "アクション" => "アクション"} %>
+  
+  <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+  <%= f.label :"作品のURL（任意）" %>
+      <%= f.text_field :url, class: 'form-control' %>
+  
   <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+    <%= f.label :コメント %>
+    <%= f.text_area :content %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit "投稿", class: "btn btn-primary" %>
 <% end %>

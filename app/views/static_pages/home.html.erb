@@ -11,6 +11,9 @@
       <section class="stats">
         <%= render 'shared/stats' %>
       </section>
+      <section class="one_comment">
+      <p><%= @user.profile %></p>
+    　</section>
       <section class="micropost_form">
         <%= link_to "New Post", newpost_path, class: "btn btn-lg btn-primary" %>
       </section>

@@ -1,0 +1,8 @@
+<%= render 'head' %>
+<% if @web_comic_items.any? %>
+  <ol class="microposts">
+    <%= render @web_comic_items %>
+  </ol>
+  <%= will_paginate @web_comic_items %>
+
+<% end %>

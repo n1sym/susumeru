@@ -1,9 +1,12 @@
 <% if logged_in? %>
   <div class="row">
     <div class="col-md-8">
-      <h3>Micropost Feed</h3>
+      <h3>タイムライン</h3>
       <%= render 'shared/feed' %>
     </div>
+    
+    
+    
     <aside class="col-md-4">
       <section class="user_info">
         <%= render 'shared/user_info' %>
@@ -12,7 +15,7 @@
         <%= render 'shared/stats' %>
       </section>
       <section class="one_comment">
-      <p><%= @user.profile %></p>
+      <%= @user.profile %>
     　</section>
       <section class="micropost_form">
         <%= link_to "New Post", newpost_path, class: "btn btn-lg btn-primary" %>
@@ -23,6 +26,6 @@
 <% else %>
 <p>
   This is the home page<br><br>
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "新規登録", signup_path, class: "btn btn-lg btn-primary" %>
 </p>
 <% end %>

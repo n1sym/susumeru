@@ -181,14 +181,16 @@ aside {
 }
 
 .one_comment {
+  margin-top: 5px;
   background: #F2F2F2;
-  font-size: 0.9em;
+  font-size: 1.0em;
   padding: 7px 10px;
 }
 
 .stats {
   overflow: auto;
   margin-top: 0;
+  margin-bottom: 5px;
   padding: 0;
   a {
     float: left;
@@ -291,12 +293,22 @@ input {
   }
   .user {
     margin-top: 5em;
-    margin-left: 0px;
+    margin-left: 5px;
     padding-top: 0;
   }
+  .title {
+    margin-left: 0px;
+    margin-bottom: 30px;
+    padding: 0px;
+  }
+  
   .content {
     display: block;
-    margin-left: 0px;
+    background: #F2F2F2;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px ;
+    
     img {
       display: block;
       padding: 5px 0;

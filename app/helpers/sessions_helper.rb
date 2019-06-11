@@ -1,5 +1,16 @@
 module SessionsHelper
   
+  #カテゴリ名を英⇒日に変換
+  def c_convert(category)
+    return "小説" if category == "novel"
+    return "漫画" if category == "comic"
+    return "web漫画" if category == "web_comic"
+    return "web小説" if category == "web_novel"
+    return "アニメ" if category == "anime"
+    return "映画" if category == "movie"
+  end
+    
+  
   # 渡されたユーザーでログインする
   def log_in(user)
     session[:user_id] = user.id

@@ -1,0 +1,8 @@
+<%= render 'head' %>
+<% if @movie_items.any? %>
+  <ol class="microposts">
+    <%= render @movie_items %>
+  </ol>
+  <%= will_paginate @movie_items %>
+
+<% end %>

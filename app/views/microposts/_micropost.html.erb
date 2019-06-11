@@ -1,12 +1,12 @@
 <li id="micropost-<%= micropost.id %>">
   
   
-  <span class="title"><%= micropost.title %></span>
+  <span class="title"><strong><%= micropost.title %></strong>
   <% if micropost.url != nil && micropost.url != "" %>
   ｜ <%= link_to "作品ページ", micropost.url %>
   <% end %>
-  <br>
-  <span class="category"><%= micropost.category %></span> ｜ 
+  </span><br>｜
+  <span class="category"><%= link_to c_convert(micropost.category), "#{micropost.category}" %></span> ｜ 
   <span class="genre"><%= micropost.genre %></span>
   <% if micropost.genre2 != "nil" && micropost.genre2 != micropost.genre && micropost.genre2 != nil%>
   ｜ <span class="genre"><%= micropost.genre2 %></span>
@@ -14,7 +14,7 @@
   <% if micropost.genre3 != "nil" && micropost.genre3 != micropost.genre && micropost.genre3 != micropost.genre2 && micropost.genre3 != nil%>
   ｜ <span class="genre"><%= micropost.genre3 %></span>
   <% end %>
-  <br>
+  ｜<br>
   <span class="content"><%= micropost.content %></span>
   <span class="timestamp">
     <%= link_to micropost.user.name, micropost.user %> : <%= micropost.created_at.strftime("%Y-%m-%d %H:%M") %> 
@@ -23,4 +23,5 @@
                                        data: { confirm: "You sure?" } %>
     <% end %>
   </span>
+  
 </li>

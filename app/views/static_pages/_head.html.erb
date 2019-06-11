@@ -1,0 +1,19 @@
+<h3>みんなのおすすめ作品</h3>
+
+<p> <%= link_to "TOP", "index" %> |
+<%= link_to "漫画", "comic" %> |
+<%= link_to "web漫画", "web_comic" %> |
+<%= link_to "小説", "novel" %> |
+<%= link_to "web小説", "web_novel" %> |
+<%= link_to "アニメ", "anime" %> |
+<%= link_to "映画", "movie" %> </p>
+
+<%= form_tag(root_path, method: :get) do %>
+        <div class="input-group">
+          <%= search_field_tag "q", params[:q], class: "form-control", placeholder: "キーワード検索" %>
+          <span class="input-group-btn">
+            <%= submit_tag "検索", class: "btn btn-primary" %>
+          </span>
+        </div>
+ <% end %>
+ <br>

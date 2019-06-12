@@ -86,6 +86,8 @@ class User < ApplicationRecord
                      OR user_id = :user_id", user_id: id)
   end
   
+  
+  
   # ユーザーをフォローする
   def follow(other_user)
     following << other_user

@@ -21,11 +21,12 @@
     <!-- タブ・メニュー -->
     <ul class="nav nav-tabs">
 	  <li class="active"><a href="#sampleContentA" data-toggle="tab">投稿 (<%= @user.microposts.count %>) </a></li>
-  	<li><a href="#sampleContentB" data-toggle="tab">タブＢ</a></li>
+  	<li><a href="#sampleContentB" data-toggle="tab">お気に入り (<%= Like.where(user_id: @user.id).count %>) </a></li>
     </ul>
 <!-- タブ内容 -->
     <div class="tab-content">
     	<div class="tab-pane active" id="sampleContentA">
+    	  <br>
 	  	<% if @user.microposts.any? %>
       <ol class="microposts">
         <%= render @microposts %>
@@ -36,7 +37,14 @@
 	</div>
 	
 	<div class="tab-pane" id="sampleContentB">
-		<p>タブＢの内容</p>
+	  <br>
+		<ol class="microposts">
+		  
+		<%= render @likes %>
+		  </ol>
+      <%= will_paginate @likes %>
+      <hr>
+    
 	</div>
 	
 		

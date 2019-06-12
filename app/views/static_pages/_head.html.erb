@@ -8,6 +8,8 @@
 <%= link_to "アニメ", "anime" %> |
 <%= link_to "映画", "movie" %> </p>
 
+
+
 <%= form_tag(root_path, method: :get) do %>
         <div class="input-group">
           <%= search_field_tag "q", params[:q], class: "form-control", placeholder: "キーワード検索" %>

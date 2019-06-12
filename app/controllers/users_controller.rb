@@ -13,8 +13,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
-    
+    @microposts = @user.microposts.paginate(page: params[:page], per_page: 15)
+    @likes = Like.where(user_id: @user.id)
   end
   
    def create
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       flash[:info] = "アカウントを有効化してください"
-      redirect_to root_url
+      redirect_to home_path
     else
       render 'new'
     end
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :profile, :password,
+      params.require(:user).permit(:name, :email, :profile, :twitter, :password,
                                    :password_confirmation)
     end
     

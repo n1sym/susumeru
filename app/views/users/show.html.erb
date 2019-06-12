@@ -2,7 +2,12 @@
 <div class="row">
   <aside class="col-sm-4">
     <section class="user_info">
-      <h1><%= @user.name %></h1>
+      <font size="4"><%= @user.name %></font>
+        <% if @user.twitter != nil %>
+         <i class="fab fa-twitter fa-lg fa-fw twitter"></i>
+         <% id = @user.twitter %>
+         <%= link_to "twitter", "https://twitter.com/#{id}" %>
+        <% end %>
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
@@ -13,13 +18,28 @@
     <br><%= render 'follow_form' if logged_in? %>
   </aside>
   <div class="col-md-8">
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+    <!-- タブ・メニュー -->
+    <ul class="nav nav-tabs">
+	  <li class="active"><a href="#sampleContentA" data-toggle="tab">投稿 (<%= @user.microposts.count %>) </a></li>
+  	<li><a href="#sampleContentB" data-toggle="tab">タブＢ</a></li>
+    </ul>
+<!-- タブ内容 -->
+    <div class="tab-content">
+    	<div class="tab-pane active" id="sampleContentA">
+	  	<% if @user.microposts.any? %>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
       <%= will_paginate @microposts %>
       <hr>
     <% end %>
+	</div>
+	
+	<div class="tab-pane" id="sampleContentB">
+		<p>タブＢの内容</p>
+	</div>
+	
+		
+</div>
   </div>
 </div>

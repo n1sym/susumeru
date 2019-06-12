@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190610130236) do
+ActiveRecord::Schema.define(version: 20190612125509) do
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "micropost_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["micropost_id"], name: "index_likes_on_micropost_id"
+    t.index ["user_id", "micropost_id"], name: "index_likes_on_user_id_and_micropost_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
@@ -51,6 +61,7 @@ ActiveRecord::Schema.define(version: 20190610130236) do
     t.boolean "activated", default: false
     t.datetime "activated_at"
     t.text "profile"
+    t.string "twitter"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -24,11 +24,11 @@
   	<br>
 
     	  <br>
-	  	<% if @user.microposts.any? %>
+	  	<% if @likes.any? %>
       <ol class="microposts">
-        <%= render @microposts %>
+        <%= render @likes %>
       </ol>
-      <%= will_paginate @microposts %>
+      <%= will_paginate @likes %>
       <hr>
     <% end %>
 	</div>

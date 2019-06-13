@@ -5,12 +5,8 @@ Rails.application.routes.draw do
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
   get  '/index', to: 'static_pages#index'
-  get  '/novel',   to: 'static_pages#novel'
-  get  '/comic',   to: 'static_pages#comic'
-  get  '/web_novel',   to: 'static_pages#web_novel'
-  get  '/web_comic',   to: 'static_pages#web_comic'
-  get  '/anime',   to: 'static_pages#anime'
-  get  '/movie',   to: 'static_pages#movie'
+  get  '/index/:id', to: 'static_pages#index'
+  
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   get  '/newpost', to: 'microposts#new'
@@ -19,6 +15,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   post '/likes/:micropost_id/create', to: 'likes#create'
   post '/likes/:micropost_id/destroy', to: 'likes#destroy'
+  get '/users/:id/like', to: 'users#like'
   
   resources :users do
     member do

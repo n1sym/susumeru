@@ -2,6 +2,9 @@
   
   
   <span class="title"><strong><%= micropost.title %></strong>
+  <% if micropost.author != nil && micropost.author != "" %>
+   (<%= micropost.author %>) 
+  <% end %>
   <% if micropost.url != nil && micropost.url != "" %>
   ｜ <%= link_to "作品ページ", micropost.url %>
   <% end %>
@@ -23,16 +26,14 @@
        <%= link_to "delete", micropost, method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>
-    <% if Like.find_by("micropost_id = #{micropost.id} AND user_id = #{@current_user.id}") %>
-    <%= link_to("/likes/#{micropost.id}/destroy",{method: 'post'}) do %>
-    <span class="fas fa-star fa-fw star"></span>
-    <% end %>
-    <% else %>
-    <%= link_to("/likes/#{micropost.id}/create", {method: 'post'}) do %>
-    <span class="fas fa-star fa-fw unstar"></span>
-    <% end %>
-    <% end %>
-    <%= Like.where(micropost_id: micropost.id).count %>
+    <span id="like-of-<%= micropost.id %>">
+   <%= render partial: 'microposts/like', locals: {micropost: micropost } %>
+   </span>
   </span>
   
+  
+    
 </li>
+
+
+

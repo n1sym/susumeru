@@ -1,0 +1,18 @@
+ <% if @current_user != nil %>
+    
+    <% if Like.find_by("micropost_id = #{micropost.id} AND user_id = #{@current_user.id}") %>
+      <%= link_to("/likes/#{micropost.id}/destroy", method: :post, remote: true) do %>
+        <i class="fas fa-star fa-fw star"></i>
+      <% end %>
+    <% else %>
+      <%= link_to("/likes/#{micropost.id}/create", method: :post, remote: true) do %>
+        <i class="fas fa-star fa-fw unstar"></i>
+      <% end %>
+    <% end %>
+     <%= Like.where(micropost_id: micropost.id).count %>
+    
+    
+    <% else %>
+    <span class="fas fa-star fa-fw unstar"></span> 
+    <%= Like.where(micropost_id: micropost.id).count %>
+ <% end %>

@@ -13,15 +13,14 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:microposts_page], per_page: 10)
-    like_ids = "SELECT micropost_id FROM likes WHERE user_id = #{@user.id}"
-    @likes = Micropost.where("id IN (#{like_ids})").paginate(page: params[:likes_page], per_page: 10)
+    @microposts = @user.microposts.paginate(page: params[:page], per_page: 10)
+    
   end
   
   def like
     @user = User.find(params[:id])
     like_ids = "SELECT micropost_id FROM likes WHERE user_id = #{@user.id}"
-    @likes = Micropost.where("id IN (#{like_ids})").paginate(page: params[:likes_page], per_page: 10)
+    @likes = Micropost.where("id IN (#{like_ids})").paginate(page: params[:page], per_page: 10)
   end
   
    def create

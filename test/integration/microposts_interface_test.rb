@@ -17,7 +17,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     # 有効な送信
     content = "This micropost really ties the room together"
     assert_difference 'Micropost.count', 1 do
-      post microposts_path, params: { micropost: { content: content } }
+      post microposts_path, params: { micropost: { content: content, title:"a" } }
     end
     assert_redirected_to root_url
     follow_redirect!

@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get  '/contact', to: 'static_pages#contact'
   get  '/index', to: 'static_pages#index'
   get  '/index/:id', to: 'static_pages#index'
-  
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   get  '/newpost', to: 'microposts#new'
@@ -16,6 +15,8 @@ Rails.application.routes.draw do
   post '/likes/:micropost_id/create', to: 'likes#create'
   post '/likes/:micropost_id/destroy', to: 'likes#destroy'
   get '/users/:id/like', to: 'users#like'
+  post '/notification', to: 'static_pages#create'
+  get '/notification', to: 'static_pages#notification'
   
   resources :users do
     member do
@@ -27,5 +28,6 @@ Rails.application.routes.draw do
   resources :microposts,          only: [:new, :create, :edit, :update, :destroy]
   resources :relationships,       only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
+  resources :notifications, only: [:create, :destroy]
   
 end

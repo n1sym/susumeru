@@ -7,6 +7,14 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def create
+    redirect_to "/notification"
+  end
+  
+  def notification
+    @notifications = Notification.where("user_id = '#{current_user.id}'")
+  end
+  
   def about
   end
   

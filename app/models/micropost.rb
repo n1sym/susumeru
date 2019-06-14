@@ -1,11 +1,13 @@
 class Micropost < ApplicationRecord
   belongs_to :user
+  has_many :likes, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :title, presence: true
   validates :content, presence: true, length: { maximum: 300 }
 
-  default_scope -> { order(created_at: :desc) }
+  
   scope :search_by_keyword, -> (keyword) {
     where("microposts.content LIKE :keyword or microposts.genre3 LIKE :keyword
     or microposts.title LIKE :keyword

@@ -3,7 +3,7 @@ require 'test_helper'
 class MicropostTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
-    @micropost = @user.microposts.build(content: "Lorem ipsum")
+    @micropost = @user.microposts.build(content: "Lorem ipsum", title: "a")
   end
 
   test "should be valid" do
@@ -21,7 +21,7 @@ class MicropostTest < ActiveSupport::TestCase
   end
 
   test "content should be at most 140 characters" do
-    @micropost.content = "a" * 141
+    @micropost.content = "a" * 301
     assert_not @micropost.valid?
   end
   

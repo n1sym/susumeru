@@ -3,11 +3,11 @@
   <aside class="col-sm-4">
     <section class="user_info">
       <font size="4"><%= @user.name %></font>
-        <% if @user.twitter != nil %>
-         <i class="fab fa-twitter fa-lg fa-fw twitter"></i>
-         <% id = @user.twitter %>
-         <%= link_to "twitter", "https://twitter.com/#{id}" %>
-        <% end %>
+      <% if @user.twitter != nil %>
+        <i class="fab fa-twitter fa-lg fa-fw twitter"></i>
+        <% id = @user.twitter %>
+        <%= link_to "twitter", "https://twitter.com/#{id}" %>
+      <% end %>
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
@@ -15,16 +15,17 @@
     <section class="one_comment">
     <%= @user.profile %>
     </section>
-    <br><%= render 'follow_form' if logged_in? %>
+    <br>
+    <%= render 'follow_form' if logged_in? %>
   </aside>
+  
   <div class="col-md-8">
     <br>
 	  <%= link_to("投稿 (#{@user.microposts.count})","/users/#{@user.id}") %> ｜
-  	<%= link_to("お気に入り (#{Like.where(user_id: @user.id).count})" ,"/users/#{@user.id}/like") %>
+  	<%= link_to("お気に入り (#{@user.likes.count})" ,"/users/#{@user.id}/like") %>
   	<br>
-
-    	  <br>
-	  	<% if @user.microposts.any? %>
+    <br>
+	  <% if @user.microposts.any? %>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
@@ -32,10 +33,4 @@
       <hr>
     <% end %>
 	</div>
-	
-
-	
-		
-</div>
-  </div>
 </div>

@@ -9,10 +9,8 @@
         <i class="fas fa-star fa-fw unstar"></i>
       <% end %>
     <% end %>
-     <%= Like.where(micropost_id: micropost.id).count %>
-    
-    
+    <%= micropost.likes.count %>
     <% else %>
     <span class="fas fa-star fa-fw unstar"></span> 
-    <%= Like.where(micropost_id: micropost.id).count %>
+    <%= micropost.likes.count %>
  <% end %>

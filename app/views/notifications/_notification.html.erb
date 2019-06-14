@@ -1,0 +1,5 @@
+<li id="notification-<%= notification.id %>">
+<% if notification.notified_type == "お気に入り" %>
+  <%= notification.notified_by_id %> が <%= Micropost.find(notification.micropost_id).title %> を <%= notification.notified_type %> しました。
+<% end %>
+</li>

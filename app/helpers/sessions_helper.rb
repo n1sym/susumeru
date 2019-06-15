@@ -9,7 +9,15 @@ module SessionsHelper
     return "アニメ" if category == "anime"
     return "映画" if category == "movie"
   end
-    
+  
+  def notification_count(user)
+    count = Notification.where("user_id = ? AND read = ?", user.id, false).count
+    if count == 0
+      return
+    else 
+      return "(#{count})"
+    end
+  end
   
   # 渡されたユーザーでログインする
   def log_in(user)

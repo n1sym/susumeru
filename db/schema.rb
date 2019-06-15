@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190614115744) do
+ActiveRecord::Schema.define(version: 20190615055829) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20190614115744) do
     t.index ["notified_by_id"], name: "index_notifications_on_notified_by_id"
     t.index ["relationship_id"], name: "index_notifications_on_relationship_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "relationship_mutes", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationship_mutes_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationship_mutes_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationship_mutes_on_follower_id"
   end
 
   create_table "relationships", force: :cascade do |t|

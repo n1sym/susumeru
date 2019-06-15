@@ -1,5 +1,11 @@
 <li id="notification-<%= notification.id %>">
 <% if notification.notified_type == "お気に入り" %>
-  <%= notification.notified_by_id %> が <%= Micropost.find(notification.micropost_id).title %> を <%= notification.notified_type %> しました。
+    <%= notification.created_at.strftime("%m/%d %H:%M") %> :
+    <%= link_to User.find(notification.notified_by_id).name, "/users/#{notification.notified_by_id}" %>
+    が <%= Micropost.find(notification.micropost_id).title %> を <%= notification.notified_type %>しました。
+<% elsif notification.notified_type == "フォロー" %>
+    <%= notification.created_at.strftime("%m/%d %H:%M") %> :
+    <%= link_to User.find(notification.notified_by_id).name, "/users/#{notification.notified_by_id}" %>
+    が あなたを <%= notification.notified_type %>しました。
 <% end %>
 </li>

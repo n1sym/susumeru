@@ -15,7 +15,10 @@
     <section class="one_comment">
     <%= @user.profile %>
     </section>
-    <br><%= render 'follow_form' if logged_in? %>
+    <section class="follow_mute">
+    <li><%= render 'follow_form' if logged_in? %></li>
+    <li><%= render 'mute_form' if logged_in? %></li>
+    </section>
   </aside>
   <div class="col-md-8">
     <br>

@@ -13,13 +13,13 @@ class MicropostsController < ApplicationController
       flash[:success] = "投稿が完了しました!"
       redirect_to root_url
     else
-      @feed_items = []
-      render 'microposts/new'
+      render 'new'
     end
   end
   
   def edit
     @micropost = Micropost.find(params[:id])
+    
   end
   
   def update
@@ -28,13 +28,13 @@ class MicropostsController < ApplicationController
       flash[:success] = "更新しました"
       redirect_to root_url
     else
-      render 'edit'
+      render "edit"
     end
   end
   
   def destroy
     @micropost.destroy
-    flash[:success] = "Micropost deleted"
+    flash[:success] = "削除しました"
     redirect_to request.referrer || root_url
   end
   

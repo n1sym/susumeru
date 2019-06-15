@@ -1,0 +1,9 @@
+<% provide(:title, "ミュート中") %>
+<h1>ミュート中のユーザー</h1>
+<% if @users.any? %>
+      <ul class="users follow">
+        <%= render @users %>
+        
+      </ul>
+      <%= will_paginate @users %>
+    <% end %>

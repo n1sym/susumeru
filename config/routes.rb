@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
   get  '/index', to: 'static_pages#index'
+  get  '/mute_index', to: 'static_pages#mute_index'
   get  '/index/:id', to: 'static_pages#index'
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   get  '/newpost', to: 'microposts#new'
+  get  '/microposts', to: 'microposts#new'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
@@ -27,7 +29,8 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:new, :create, :edit, :update, :destroy]
   resources :relationships,       only: [:create, :destroy]
-  resources :likes, only: [:create, :destroy]
-  resources :notifications, only: [:create, :destroy]
+  resources :relationship_mutes,  only: [:create, :destroy]
+  resources :likes,               only: [:create, :destroy]
+  resources :notifications,       only: [:create, :destroy]
   
 end

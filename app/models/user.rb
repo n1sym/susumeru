@@ -11,6 +11,15 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   
+  has_many :active_relationship_mutes, class_name:  "RelationshipMute",
+                                       foreign_key: "follower_id",
+                                       dependent:   :destroy
+  has_many :passive_relationship_mutes, class_name:  "RelationshipMute",
+                                        foreign_key: "followed_id",
+                                        dependent:   :destroy                                
+  has_many :muting, through: :active_relationship_mutes, source: :followed
+  has_many :muters, through: :passive_relationship_mutes, source: :follower
+  
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -104,6 +113,21 @@ class User < ApplicationRecord
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+  
+  # ユーザーをミュートする
+  def mute(other_user)
+    muting << other_user
+  end
+
+  # ユーザーをミュート解除する
+  def unmute(other_user)
+    active_relationship_mutes.find_by(followed_id: other_user.id).destroy
+  end
+
+  # 現在のユーザーがミュートしてたらtrueを返す
+  def muting?(other_user)
+    muting.include?(other_user)
   end
   
   private
